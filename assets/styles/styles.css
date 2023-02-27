@@ -4,3 +4,52 @@
     box-sizing: border-box;
 }
 
+.banner{
+    background-color: gainsboro;
+    height: 20vh;
+}
+.carousel-control-prev .carousel-control-next {
+    filter: invert(100%);
+}
+h1{
+    font-size: 55px;
+}
+.banner a{
+    font-size: 55px;
+    text-decoration: none;
+    color: black; 
+}
+.banner a:visited{
+    text-decoration: none;
+}
+.form-main{
+    display: flex;
+    justify-content: space-between;
+    padding: 3em;
+
+}
+.tarjetas{
+    padding: 3em;
+}
+.card{
+    margin: 0 auto;
+}
+.card-img-frame{
+    padding: 1.5em;
+
+}
+.card-img-top{
+    max-height: 30vh;
+    box-shadow: -5px -5px 10px 2px rgba(220, 220, 220, 0.8);
+}
+.card-footer{
+    display: flex;
+    justify-content: space-around;
+}
+.card-footer .btn{
+    box-shadow: -5px -5px 10px 2px rgba(220, 220, 220, 0.8);
+}
+.footer{
+    background-color: gainsboro;
+
+}
