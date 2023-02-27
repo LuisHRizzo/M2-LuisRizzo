@@ -60,6 +60,9 @@ h1{
 .form-group{
     margin: 1em auto;
 }
+.table{
+    margin: 2em auto;
+}
 .footer{
     background-color: gainsboro;
 
