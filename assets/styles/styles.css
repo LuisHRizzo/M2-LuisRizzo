@@ -6,34 +6,44 @@
 
 .banner{
     background-color: gainsboro;
-    height: 20vh;
+    height: 12vh;
+}
+.banner a{
+    font-size: 55px;
+    text-decoration: none;
+    color: #d90368; 
+}
+.banner a:visited{
+    text-decoration: none;
+}
+input[type=search]{
+    padding: 5px;
+}
+input[type=search]:focus{
+    background-color: #d9036721;
 }
 .carousel-control-prev .carousel-control-next {
     filter: invert(100%);
 }
 h1{
     font-size: 55px;
-    color: brown;
+    color: #d90368;
 }
-.banner a{
-    font-size: 55px;
-    text-decoration: none;
-    color: brown; 
-}
-.banner a:visited{
-    text-decoration: none;
-}
+
 .form-main{
     display: flex;
     justify-content: space-between;
     padding: 3em;
-
+}
+.bi-search{
+    color: #d90368;
 }
 .tarjetas{
     padding: 3em;
 }
 .card{
     margin: 0 auto;
+    max-width: 20em;
 }
 .card-img-frame{
     padding: 1.5em;
@@ -53,6 +63,30 @@ h1{
 .card-footer .btn{
     box-shadow: -5px -5px 10px 2px rgba(220, 220, 220, 0.8);
 }
+.card-footer .btn:hover{
+    background-color: #d9036721;
+}
+.card-detail{
+    width: 90vw;
+    max-width: 1400px;
+    margin: 2em auto;
+    border: 2px solid black;
+
+}
+.card-detail-content{
+    padding: 2em;
+}
+.img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.card-img-detail{
+    width: 90%;
+    object-fit: cover;
+    
+}
 .contacto{
     max-width: 700px;
     min-width: none;
@@ -64,10 +98,11 @@ h1{
 .table{
     margin: 2em auto;
 }
+
 .footer{
     background-color: gainsboro;
 
 }
 footer h3, .bi-instagram, .bi-facebook, .bi-whatsapp{
-    color: brown;
+    color: #d90368;
 }
