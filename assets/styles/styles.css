@@ -13,11 +13,12 @@
 }
 h1{
     font-size: 55px;
+    color: brown;
 }
 .banner a{
     font-size: 55px;
     text-decoration: none;
-    color: black; 
+    color: brown; 
 }
 .banner a:visited{
     text-decoration: none;
@@ -66,4 +67,7 @@ h1{
 .footer{
     background-color: gainsboro;
 
+}
+footer h3, .bi-instagram, .bi-facebook, .bi-whatsapp{
+    color: brown;
 }
