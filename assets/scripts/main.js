@@ -24,7 +24,7 @@ function imprimirCards(){
             <h5 class="card-title">${cardArray[i].name}</h5>
             <p class="card-text">${cardArray[i].description}</p>
             <div class="card-footer">
-            <p>U$D ${cardArray[i].price}</p><a href="#!" class="btn btn-outline-secondary">Learn More</a>
+            <p>U$D ${cardArray[i].price}</p><a href="./details.html" class="btn btn-outline-secondary">Learn More</a>
             </div>
         </div>
         </div>
@@ -35,3 +35,35 @@ function imprimirCards(){
 }
 
 imprimirCards();
+const nombreFiltrado = [];
+
+const nombresCheckbox = (arr) => {
+   
+    for(var i = 0; i < arr.length; i++) {
+   
+      const elemento = arr[i].category;
+    
+      if (!nombreFiltrado.includes(arr[i].category)) {
+        nombreFiltrado.push(elemento);
+      }
+    }
+    
+    return nombreFiltrado;
+  }
+  nombresCheckbox(cardArray)
+
+  /* console.log(nombreFiltrado) */
+
+  let checkboxSearch = document.getElementById('checkboxSearch');
+  function imprimirCheckbox(){
+    for (let i = 0; i < nombreFiltrado.length; i++){
+        checkboxSearch.innerHTML += `
+        <div>
+            <input type="checkbox" id="category" name="category">
+            <label for="category">${nombreFiltrado[i]} </label>
+        </div>
+
+        `
+    }
+}
+imprimirCheckbox();
