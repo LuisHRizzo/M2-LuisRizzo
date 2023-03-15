@@ -1,69 +1,100 @@
-var data = data;
-const fechaActual = data.currentDate;
+
+// Constantes capturadas y variables
+/* var data = data; */
+/* const fechaActual = data.currentDate; */
 const events = data.events;
-let cardArray = [];
+const checkboxSearch = document.getElementById('checkboxSearch');
+const card = document.getElementById(`tarjetasMain`)
+const input = document.querySelector('input')
 
-function cardsMain() {   
-    for (let i = 0; i < events.length; i++) {
-        cardArray.push(events[i])
-        /* console.log(cardArray[i]) */
+
+// Eventos
+
+input.addEventListener('input',superFiltro)
+
+checkboxSearch.addEventListener('change',superFiltro)
+
+// Llamadas de funciones
+pintarCards(events);
+crearCheckboxes(events);
+
+
+// Funciones
+
+function pintarCards(arrayDatos){
+    if(arrayDatos.length == 0){
+        card.innerHTML = `<h2 class="display-1 fw-bold">No se encontró una tarjeta</h2>`
+        return
     }
-}
-cardsMain();
-let card = document.getElementById(`tarjetasMain`)
-
-function imprimirCards(){
-    for (let i = 0; i < cardArray.length; i++){
-        card.innerHTML += `
+    let productHtml =''
+    arrayDatos.forEach(event => {
+        productHtml += `
         <div class="col">
-        <div class="card">
-        <div class="card-img-frame">
-            <img src="${cardArray[i].image}" class="card-img-top" alt="${cardArray[i].name} ">
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">${cardArray[i].name}</h5>
-            <p class="card-text">${cardArray[i].description}</p>
-            <div class="card-footer">
-            <p>U$D ${cardArray[i].price}</p><a href="./details.html" class="btn btn-outline-secondary">Learn More</a>
+            <div class="card">
+            <div class="card-img-frame">
+                <img src="${event.image}" class="card-img-top" alt=" ${data.events.name} ">
             </div>
-        </div>
-        </div>
-        </div>
-
-        `
-    }
+            <div class="card-body">
+                <h5 class="card-title">${event.name}</h5>
+                <p class="card-text">${event.description}</p>
+                <div class="card-footer">
+                <p>U$D ${event.price}</p><a href="./details.html?_id" class="btn btn-outline-secondary">Learn More</a>
+                </div>
+            </div>
+            </div>
+            </div>
+    
+        `              
+    })
+    card.innerHTML = productHtml
 }
 
-imprimirCards();
-const nombreFiltrado = [];
-
-const nombresCheckbox = (arr) => {
-   
-    for(var i = 0; i < arr.length; i++) {
-   
-      const elemento = arr[i].category;
-    
-      if (!nombreFiltrado.includes(arr[i].category)) {
-        nombreFiltrado.push(elemento);
-      }
-    }
-    
-    return nombreFiltrado;
-  }
-  nombresCheckbox(cardArray)
-
-  /* console.log(nombreFiltrado) */
-
-  let checkboxSearch = document.getElementById('checkboxSearch');
-  function imprimirCheckbox(){
-    for (let i = 0; i < nombreFiltrado.length; i++){
-        checkboxSearch.innerHTML += `
-        <div>
-            <input type="checkbox" id="category" name="category">
-            <label for="category">${nombreFiltrado[i]} </label>
-        </div>
-
-        `
-    }
+function crearCheckboxes(arrayInfo){
+    let checks =''
+    let categoriaRepetida = arrayInfo.map(elemento => elemento.category)
+    let categorias = new Set(categoriaRepetida.sort((a,b)=>{
+        if(a>b){return 1}
+        if(a<b){return -1}
+        return 0
+    }))
+    categorias.forEach(elemento =>{
+        checks += `<div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="${elemento}" value="${elemento}">
+        <label class="form-check-label" for="${elemento}">${elemento}</label>
+      </div>`
+    })
+    checkboxSearch.innerHTML = checks
 }
-imprimirCheckbox();
+
+
+function superFiltro(){
+    let arrayFiltrado1 = filtrarPorTexto(events, input.value)
+    let arrayFiltrado2 = filtrarPorCategoria(arrayFiltrado1)
+    pintarCards(arrayFiltrado2)
+}
+
+
+function filtrarPorTexto(arrayDatos, texto){
+    let arrayFiltrado = arrayDatos.filter(elemento => elemento.name.toLowerCase().includes(texto.toLowerCase()))
+    console.log(arrayFiltrado)
+    return arrayFiltrado
+}
+
+function filtrarPorCategoria(arrayInfo){
+    let checkboxes = document.querySelectorAll("input[type='checkbox']")
+    /* console.log(checkboxes); */
+    let arrayChecks = Array.from(checkboxes)
+/*     console.log(arrayChecks); */
+    let checksChecked = arrayChecks.filter(check => check.checked)
+/*     console.log(checksChecked); */
+    if(checksChecked.length == 0){
+        return arrayInfo
+    }
+    let checkValues = checksChecked.map(check => check.value)
+/*     console.log(checkValues); */
+    let arrayFiltrado = arrayInfo.filter(elemento => checkValues.includes(elemento.category))
+/*     console.log(arrayFiltrado); */
+    return arrayFiltrado
+}
+
+
