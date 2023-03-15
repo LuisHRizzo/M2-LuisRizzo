@@ -32,13 +32,13 @@ function pintarCards(arrayDatos){
         <div class="col">
             <div class="card">
             <div class="card-img-frame">
-                <img src="${event.image}" class="card-img-top" alt=" ${data.events.name} ">
+                <img src="${event.image}" class="card-img-top" alt=" ${event.name} ">
             </div>
             <div class="card-body">
                 <h5 class="card-title">${event.name}</h5>
                 <p class="card-text">${event.description}</p>
                 <div class="card-footer">
-                <p>U$D ${event.price}</p><a href="./details.html?_id" class="btn btn-outline-secondary">Learn More</a>
+                <p>U$D ${event.price}</p><a href="./details.html?id=${event._id}" class="btn btn-outline-secondary">Learn More</a>
                 </div>
             </div>
             </div>
@@ -76,7 +76,7 @@ function superFiltro(){
 
 function filtrarPorTexto(arrayDatos, texto){
     let arrayFiltrado = arrayDatos.filter(elemento => elemento.name.toLowerCase().includes(texto.toLowerCase()))
-    console.log(arrayFiltrado)
+/*     console.log(arrayFiltrado) */
     return arrayFiltrado
 }
 
