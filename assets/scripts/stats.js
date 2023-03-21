@@ -65,7 +65,7 @@ let getApi = async () => {
             <td> ${maxCapacity(events)}</td>
             `    
         }
-          
+          // tratar de hacer los filtrados para la segunda y tercer tablas
         function estadisticasPorCategoria(arrayData, categoriaBuscada) {
             const eventosFiltrados = arrayData.filter(evento => evento.category === categoriaBuscada);
             
