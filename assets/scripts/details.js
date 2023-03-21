@@ -1,21 +1,29 @@
-// declaracion de variables y constantes capturadas
+let urlAPI = "https://mindhub-xj03.onrender.com/api/amazing"
+let getApi = async () => {
+    try {
+        let respuesta = await fetch(urlAPI);
+        let datosCrudos = await respuesta.json();
 
-const queryString = location.search
+        let events = datosCrudos.events;
 
-const params = new URLSearchParams(queryString)
+        // declaracion de variables y constantes capturadas
 
-const idParams = params.get("id")
+        const queryString = location.search
 
-let evento = data.events.find(info => info._id == idParams)
+        const params = new URLSearchParams(queryString)
 
-// eventos 
+        const idParams = params.get("id")
 
-// llamadas a funciones 
+        let evento = events.find(info => info._id == idParams)
+        console.log(evento)
+        // eventos 
 
-// funciones 
+        // llamadas a funciones 
 
-const cardDetail = document.querySelector(".card-detail")
-cardDetail.innerHTML += `
+        // funciones 
+
+        const cardDetail = document.querySelector(".card-detail")
+        cardDetail.innerHTML += `
 <div class="row">
 <div class="col-md-6 col-12 img-container">
     <div class="card-img">
@@ -37,3 +45,12 @@ cardDetail.innerHTML += `
 </div>
 </div>
 `
+
+
+    }
+    catch (error) {
+        console.log("el error es el siguiente: " + error.message)
+    }
+
+}
+getApi()
